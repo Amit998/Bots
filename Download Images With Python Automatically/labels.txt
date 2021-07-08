@@ -1,0 +1,6 @@
+0 Aadhar_Card
+1 Advertisements_Banners
+2 Book_Cover
+3 Government_Identity_Cards
+4 Posters
+5 Road_direction_sign_boards

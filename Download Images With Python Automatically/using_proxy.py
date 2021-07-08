@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from proxycrawl.proxycrawl_api import ProxyCrawlAPI
-
 import api_key
 
 
@@ -24,11 +23,12 @@ SAVE_FOLDER='google_images'
 
 
 def download_images(SAVE_FOLDER,data):
-    data= data if len(data.split(" ")) == 1 else '_'.join(data.split(" "))
+    data= data if len(data.split(" ")) == 1 else '+'.join(data.split(" "))
     n_images=1000
     print('start searching...')
-    print(data)
+    # print(data)
     searchUrl=GOOGLE_IMAGE+'q='+data
+    print(searchUrl)
     api = ProxyCrawlAPI({ 'token': api_key.API_KEY_JS})
     try:
         response = api.get(searchUrl, {'scroll': 'true', 'scroll_interval': '60', 'ajax_wait': 'true'})
@@ -61,7 +61,7 @@ def download_images(SAVE_FOLDER,data):
                 continue
             else:
                 response=requests.get(imageLink)
-                print(response.status_code,"status code")
+                print(response.status_code,"status code"+"id no "+ f'{(i+1)}'+" name  "+data)
 
                 imageName=SAVE_FOLDER+"/"+data+"_"+str(i+1)+'.jpg'
                 with open(imageName,'wb') as file:
@@ -76,12 +76,17 @@ def new_main(SAVE_FOLDER,data):
     download_images(SAVE_FOLDER,data)
 
 lst = [
-    "Road direction sign boards",
-    "Advertisements Banners",
-    "Government Identity Cards",
-    "Aadhar Cards Notices",
-    "Posters",
-    "Book Cover",
+    # "notice",
+    "notice sample",
+    "school notice",
+    "letter format notice",
+    "personal reason resignation letter",
+    # "Road direction sign boards",
+    # "Advertisements Banners",
+    # "Government Identity Cards",
+    # "Aadhar Cards Notices",
+    # "Posters",
+    # "Book Cover",
  
 ]
 
